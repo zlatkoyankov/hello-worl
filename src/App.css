@@ -1,0 +1,79 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.Todo-App {
+  padding-top: 20px;
+  display: inline-block;
+  text-align: left;
+}
+
+input {
+  font-size: 20px;
+}
+
+input[type='checkbox'] {
+  margin-right: 10px;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+  position: relative;
+}
+.todo-list button {
+  position: absolute;
+  right: 0;
+}
+
+.errorMessage {
+  color: red;
+  padding: 4px;
+  background-color: yellow;
+}
+
+li button.delete-item {
+  visibility: hidden;
+}
+
+li:hover button.delete-item {
+  visibility: visible;
+}
+
+button.delete-item {
+  background-color: red;
+  color: white;
+}
+
+.Footer a {
+  padding-left: 2px;
+  padding-right: 2px; 
+}
+
+.Footer a.active {
+  font-weight: bold;
+}
