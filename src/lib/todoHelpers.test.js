@@ -1,4 +1,4 @@
-import { addTodo, findById, toggleTodo, updateTodo, removeTodo } from './todoHelpers';
+import { addTodo, findById, toggleTodo, updateTodo, removeTodo, filterTodos } from './todoHelpers';
 
 test('addTodo should added the passed todo to the list', () => {
 	const startTodo = [
@@ -139,4 +139,47 @@ test('remove todo should not mutate the original array', () => {
 	const result = removeTodo(startTodos, targetId);
 
 	expect(result).not.toBe(startTodos);
+});
+
+test('filterTodos should return all items for the root route', () => {
+	const startTodos = [
+		{id: 1 , text: 'first todo', isComplete: false},
+		{id: 2 , text: 'second todo', isComplete: false},
+		{id: 3 , text: 'third todo', isComplete: false}
+	];
+
+	const result = filterTodos(startTodos, '/');
+
+	expect(result).toBe(startTodos)
+});
+
+test('filterTodos should return only completed items for the complete route', () => {
+	const startTodos = [
+		{id: 1 , text: 'first todo', isComplete: false},
+		{id: 2 , text: 'second todo', isComplete: true},
+		{id: 3 , text: 'third todo', isComplete: false}
+	];
+
+	const expected = [{id: 2 , text: 'second todo', isComplete: true}];
+
+	const result = filterTodos(startTodos, '/complete');
+
+	expect(result).toEqual(expected)
+});
+
+test('filterTodos should return only incompleted items for the active route', () => {
+	const startTodos = [
+		{id: 1 , text: 'first todo', isComplete: false},
+		{id: 2 , text: 'second todo', isComplete: true},
+		{id: 3 , text: 'third todo', isComplete: false}
+	];
+
+	const expected = [
+		{id: 1 , text: 'first todo', isComplete: false},
+		{id: 3 , text: 'third todo', isComplete: false}
+	];
+
+	const result = filterTodos(startTodos, '/active');
+
+	expect(result).toEqual(expected)
 });
