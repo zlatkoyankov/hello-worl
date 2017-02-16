@@ -61,8 +61,6 @@ class App extends Component {
   }
 
   render() {
-    console.log("this is the message from vim editor to test some stuff with git");
-	  console,log('some other information to add');
     const submitHandler = this.state.currenTodo ? this.handleSubmit : this.handleEmptySubmit;
     return (
       <div className="App">
