@@ -4,22 +4,24 @@ import logo from './logo.svg';
 import { TodoForm, TodoList, Footer } from './components/todo/';
 import { addTodo, generateId, findById, toggleTodo, updateTodo, removeTodo, filterTodos } from './lib/todoHelpers';
 import { pipe, partial } from './lib/utils';
+import { loadTodos, createTodo } from './lib/todoService';
 
 import './App.css';
 
 class App extends Component {
 
   state = {
-    todos: [
-      {id: 1, text: 'some todo', isComplete: false},
-      {id: 2, text: 'other todo', isComplete: false},
-      {id: 3, text: 'and some more todo', isComplete: true}
-    ],
+    todos: [],
     currenTodo: ''
   }
 
   static contextTypes = {
     route: React.PropTypes.string
+  }
+
+  componentDidMount() {
+    loadTodos()
+      .then(todos => this.setState({todos}));
   }
 
   handleRemove = (id, event) => {
@@ -46,7 +48,8 @@ class App extends Component {
       todos: newTodos,
       currenTodo: '',
       errorMessage: ''
-    })
+    });
+    createTodo(newTodo);
   }
 
   handleEmptySubmit = (event) => {
