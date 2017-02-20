@@ -56,6 +56,10 @@ li {
   background-color: yellow;
 }
 
+.success {
+  color: green;
+}
+
 li button.delete-item {
   visibility: hidden;
 }

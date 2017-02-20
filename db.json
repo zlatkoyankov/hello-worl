@@ -24,6 +24,16 @@
       "id": 1213,
       "text": "create new todo",
       "isComplete": false
+    },
+    {
+      "id": 7194,
+      "text": "add new item here",
+      "isComplete": false
+    },
+    {
+      "id": 7045,
+      "text": "add new one",
+      "isComplete": false
     }
   ]
 }
