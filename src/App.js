@@ -4,7 +4,7 @@ import logo from './logo.svg';
 import { TodoForm, TodoList, Footer } from './components/todo/';
 import { addTodo, generateId, findById, toggleTodo, updateTodo, removeTodo, filterTodos } from './lib/todoHelpers';
 import { pipe, partial } from './lib/utils';
-import { loadTodos, createTodo } from './lib/todoService';
+import { loadTodos, createTodo, saveTodo, destroyTodo } from './lib/todoService';
 
 import './App.css';
 
@@ -28,14 +28,20 @@ class App extends Component {
     event.preventDefault();
     const updatedTodos = removeTodo(this.state.todos, id);
     this.setState({ todos: updatedTodos });
+    destroyTodo(id)
+      .then(() => this.showTempMessage('Todo removed'));
   }
 
   handleToggle = (id) => {
-    const getUpdatedTodo = pipe(findById, toggleTodo, partial(updateTodo, this.state.todos));
-    const updatedTodos = getUpdatedTodo(id, this.state.todos);
+    const getToggledTodo = pipe(findById, toggleTodo);
+    const updated = getToggledTodo(id, this.state.todos)
+    const getUpdatedTodo = partial(updateTodo, this.state.todos);
+    const updatedTodos = getUpdatedTodo(updated, this.state.todos);
     this.setState({
       todos: updatedTodos
-    })
+    });
+    saveTodo(updated)
+      .then(() => this.showTempMessage('Todo updated'));
   }
 
   handleSubmit = (event) => {

@@ -8,27 +8,17 @@
     {
       "id": 2,
       "text": "second todo in my lise",
-      "isComplete": false
-    },
-    {
-      "id": 3,
-      "text": "the last not completed to do in my list",
-      "isComplete": false
-    },
-    {
-      "id": 4,
-      "text": "this todo should be a complete one",
       "isComplete": true
     },
     {
       "id": 1213,
       "text": "create new todo",
-      "isComplete": false
+      "isComplete": true
     },
     {
       "id": 7194,
       "text": "add new item here",
-      "isComplete": false
+      "isComplete": true
     },
     {
       "id": 7045,
